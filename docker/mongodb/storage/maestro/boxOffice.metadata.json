@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"boxOfficeName":{"$numberLong":"1"},"agent":{"$numberLong":"1"}},"name":"boxOfficeName_1_agent_1"}],"uuid":"75e84c4b1fe74c4090324adfc03d9707","collectionName":"boxOffice","type":"collection"}
