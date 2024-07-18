@@ -100,9 +100,7 @@ services:
     command: --sql_mode=""
 
   mongodb:
-    build:
-      context: ./docker/mongodb
-      dockerfile: Dockerfile
+    image: mongo:4.4
     container_name: mongodb
     ports:
       - "27017:27017"
