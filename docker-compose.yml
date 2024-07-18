@@ -94,7 +94,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - type: bind
-        source: ./docker/mysql/my.cnf
+        source: ./etc/mysql/conf.d/my.cnf
         target: /etc/mysql/conf.d/my.cnf
         read_only: true
     command: --sql_mode=""
