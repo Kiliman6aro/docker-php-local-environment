@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   nginx:
-    image: nginx:latest
+    image: nginx:1.27.0
     container_name: ${APP_PREFIX:-app_}nginx
     networks:
       - app_network
@@ -33,6 +33,7 @@ services:
       - type: bind
         source: ./homestead
         target: /var/www/html
+
   php71:
     build:
       context: ./docker/php/71
@@ -44,7 +45,7 @@ services:
       - type: bind
         source: ./homestead
         target: /var/www/html      
-  
+
   php74:
     build:
       context: ./docker/php/74
@@ -121,7 +122,22 @@ services:
       - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}    
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  redis:
+    image: redis:7.2.5
+    container_name: ${APP_PREFIX:-app_}redis
+    networks:
+      - app_network
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-secret}
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-secret}"]
 
 networks:
   app_network:
@@ -130,3 +146,5 @@ networks:
 volumes:
   mysql_data:
   mongodb_data:
+  rabbitmq_data:
+  redis_data:
