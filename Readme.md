@@ -21,7 +21,7 @@ You should set 3 arguments for run commands:
 - php service from docker-compose.yml
 - Path in /var/www/html
 
-Example: `./nginx.sh youhost.test php70 dh3/public`
+Example: `./nginx.sh youhost.test php70 youhost/public`
 
 > Don't forget to restart your Nginx container.
 > And add you localhost to hosts file.
