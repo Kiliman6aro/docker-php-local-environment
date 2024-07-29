@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     pkg-config \
     libssl-dev \
+    libicu-dev \
     unzip \
     zip \
     jq  \	
@@ -23,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip pdo pdo_mysql bcmath intl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
+    && docker-php-ext-install intl \
     && pecl install apcu \
     && docker-php-ext-enable apcu
 

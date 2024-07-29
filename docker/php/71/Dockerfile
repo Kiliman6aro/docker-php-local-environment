@@ -2,6 +2,7 @@ FROM php:7.1-fpm
 
 # Install Laravel dependencies
 RUN apt-get update && apt-get install -y \
+    libicu-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
@@ -14,6 +15,7 @@ RUN docker-php-ext-install iconv mcrypt mbstring \
     && docker-php-ext-install exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
+    && docker-php-ext-install intl \
     && docker-php-ext-install pdo pdo_mysql
 
 # Install and enable Redis (specifying version compatible with PHP 7.1)
